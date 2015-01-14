@@ -1,0 +1,215 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"archiwu",
+				"archiwumDataPost"
+			],
+			[
+				"arch",
+				"archiwumData"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 150.0,
+		"selected_items":
+		[
+			[
+				"PHP Code Sniffer: ",
+				"PHP Code Sniffer: Sniff this file"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Enable Package"
+			],
+			[
+				"Package Control: instal",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 472.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"Bower install",
+			"bower",
+			"bower install angular-re-captcha --save",
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Users/amino_000/Documents/GitHub/offersSearchWeb/ftpsync.settings",
+		"/C/Users/amino_000/Documents/GitHub/offersSearchWeb/composer.lock",
+		"/C/Users/amino_000/Documents/GitHub/offersSearchWeb/.htaccess",
+		"/C/Users/amino_000/Documents/GitHub/offersSearchWeb/proj.sublime-project",
+		"/D/Download/The.Settlers.7.Paths.to.a.Kingdom.Deluxe.Gold.Edition-TiNYiSO/tinyiso.nfo",
+		"/C/Users/amino_000/Documents/GitHub/terminarz/ftpsync.settings",
+		"/D/AirLinesGit/modules/orm/classes/Model/Auth/User.php",
+		"/D/AirLinesGit/system/classes/Kohana/Valid.php",
+		"/D/AirLinesGit/application/messages/models/userplane.php",
+		"/D/AirLinesGit/system/tests/kohana/ValidTest.php",
+		"/D/AirLinesGit/application/config/accidents.php",
+		"/D/AirLinesGit/application/classes/Controller/Sklep.php",
+		"/D/AirLinesGit/application/views/biuro/podglad.php",
+		"/D/AirLinesGit/application/classes/Controller/Podglad.php",
+		"/D/AirLinesGit/application/views/hangar/sklep.php",
+		"/D/AirLinesGit/application/classes/Model/User.php",
+		"/D/AirLinesGit/ftpsync.settings",
+		"/D/AirLinesGit/application/bootstrap.php",
+		"/D/AirLinesGit/application/views/template.php",
+		"/D/AirLinesGit/application/config/menu.php",
+		"/C/Users/amino_000/Documents/GitHub/stylistykaApi/recaptchalib.php",
+		"/C/Users/amino_000/Documents/GitHub/stylistykaApi/.htaccess",
+		"/C/Users/amino_000/Documents/GitHub/stylistykaApi/ftpsync.settings",
+		"/C/Users/amino_000/Documents/GitHub/stylistyka/bower.json",
+		"/C/Users/amino_000/Documents/GitHub/stylistyka/ftpsync.settings"
+	],
+	"find":
+	{
+		"height": 23.0
+	},
+	"find_in_files":
+	{
+		"height": 90.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"alpha_dash",
+			"The password fields did not match.",
+			"error",
+			" \n",
+			"\n            <small class=\"error\" ng-show=\"registerForm.username.$error.maxlength\">\n                Nazwa użytkownika może mieć maksymalnie 15 znaków.\n            </small>",
+			"loginForm",
+			"mousedown ",
+			"\n        <div class=\"form-group\">\n            <label for=\"password\">Hasło:</label>\n            <input type=\"password\" id=\"password\" ng-model=\"credentials.password\" class=\"form-control\">\n        </div>"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"registerForm",
+			""
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"project": "proj.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 260.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

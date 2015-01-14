@@ -1,0 +1,9 @@
+# Redirect to static content
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond /public_html/argeath.vipserv.org/public%{REQUEST_URI} -f
+RewriteRule ^(.+)$ /public/$1 [L]
+
+# otherwise redirect to script
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /public/index.php/$1 [L]
