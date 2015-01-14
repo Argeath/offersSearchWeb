@@ -1,0 +1,11 @@
+.login-body {
+	width: 400px;
+	background: #FFF;
+	padding: 30px;
+	border-radius: 5px;
+	position: absolute;
+	top: calc(50% - 200px);
+	left: calc(50% - 200px);
+	vertical-align: middle;
+	display: inline-block;
+}

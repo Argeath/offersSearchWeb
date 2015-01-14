@@ -11,4 +11,7 @@
 |
  */
 
+Route::get('login', "LoginController@showLogin");
+Route::post('login', "LoginController@doLogin");
+
 Route::get('/', "HomeController@showWelcome");
