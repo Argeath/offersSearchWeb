@@ -51,7 +51,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html">Wyszukiwarka ofert OLX</a>
+            <a class="navbar-brand" href="{{ URL::to('/') }}">Wyszukiwarka ofert OLX</a>
         </div>
         <!-- /.navbar-header -->
 
@@ -108,7 +108,7 @@
                     <li><a href="#"><i class="fa fa-gear fa-fw"></i> Ustawienia</a>
                     </li>
                     <li class="divider"></li>
-                    <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Wyloguj</a>
+                    <li><a href="{{ URL::to('logout') }}"><i class="fa fa-sign-out fa-fw"></i> Wyloguj</a>
                     </li>
                 </ul>
                 <!-- /.dropdown-user -->
@@ -132,13 +132,15 @@
                         <!-- /input-group -->
                     </li>
                     <li>
-                        <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Podgląd</a>
+                        <a href="{{ URL::to('/') }}"><i class="fa fa-dashboard fa-fw"></i> Podgląd</a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-car fa-fw"></i> Samochody<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="flot.html">Audi</a>
+                                @foreach ($brands as $brand)
+                                    <a href="/car/{{ $brand }}">{{ $brand }}</a>
+                                @endforeach
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->
@@ -155,6 +157,19 @@
         </div>
         <!-- /.navbar-static-side -->
     </nav>
+
+     <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">{{{ $title }}}</h1>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            {{ $main }}
+        </div>
+    </div>
 </div>
 
 <script>

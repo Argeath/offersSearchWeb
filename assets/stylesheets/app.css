@@ -1,11 +1,18 @@
+body {
+	background: #E9E9E9;
+}
+
 .login-body {
 	width: 400px;
 	background: #FFF;
 	padding: 30px;
-	border-radius: 5px;
+	border-radius: 15px;
 	position: absolute;
 	top: calc(50% - 200px);
 	left: calc(50% - 200px);
 	vertical-align: middle;
 	display: inline-block;
+	-webkit-box-shadow: 4px 4px 9px 0px rgba(50, 50, 50, 0.5);
+	-moz-box-shadow:    4px 4px 9px 0px rgba(50, 50, 50, 0.5);
+	box-shadow:         4px 4px 9px 0px rgba(50, 50, 50, 0.5);
 }

@@ -17,15 +17,15 @@ class LoginController extends BaseController {
 	protected $layout = "empty";
 
 	public function showLogin() {
+		echo Hash::make('qazqazqaz');
 		$this->layout->main = View::make('login');
 	}
 
-	public function doLogin()
-	{
+	public function doLogin() {
 		// validate the info, create rules for the inputs
 		$rules = array(
-		    'email'    => 'required|email', // make sure the email is an actual email
-		    'password' => 'required|alphaNum|min:3' // password can only be alphanumeric and has to be greater than 3 characters
+			'email' => 'required|email', // make sure the email is an actual email
+			'password' => 'required|alphaNum|min:3', // password can only be alphanumeric and has to be greater than 3 characters
 		);
 
 		// run the validation rules on the inputs from the form
@@ -33,30 +33,35 @@ class LoginController extends BaseController {
 
 		// if the validator fails, redirect back to the form
 		if ($validator->fails()) {
-		    return Redirect::to('login')
-		        ->withErrors($validator) // send back all errors to the login form
-		        ->withInput(Input::except('password')); // send back the input (not the password) so that we can repopulate the form
+			return Redirect::to('login')
+				->withErrors($validator)// send back all errors to the login form
+				->withInput(Input::except('password')); // send back the input (not the password) so that we can repopulate the form
 		} else {
 
-		    // create our user data for the authentication
-		    $userdata = array(
-		        'email'     => Input::get('email'),
-		        'password'  => Input::get('password')
-		    );
+			// create our user data for the authentication
+			$userdata = array(
+				'email' => Input::get('email'),
+				'password' => Input::get('password'),
+			);
 
-		    // attempt to do the login
-		    if (Auth::attempt($userdata)) {
+			// attempt to do the login
+			if (Auth::attempt($userdata)) {
 
-		        Redirect::to('/');
+				return Redirect::to('/');
 
-		    } else {        
+			} else {
 
-		        // validation not successful, send back to form 
-		        return Redirect::to('login');
+				// validation not successful, send back to form
+				return Redirect::to('login');
 
-		    }
+			}
 
 		}
+	}
+
+	public function doLogout() {
+		Auth::logout(); // log the user out of our application
+		return Redirect::to('login'); // redirect the user to the login screen
 	}
 
 }

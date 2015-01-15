@@ -11,7 +11,11 @@
 |
  */
 
+Route::get('car/{brand}', "ModelController@showBrand");
+Route::get('car/{brand}/{model}', "ModelController@showModel");
+
 Route::get('login', "LoginController@showLogin");
 Route::post('login', "LoginController@doLogin");
+Route::get('logout', "LoginController@doLogout");
 
-Route::get('/', "HomeController@showWelcome");
+Route::get('/', array('before' => 'auth', 'uses' => "HomeController@showWelcome"));
