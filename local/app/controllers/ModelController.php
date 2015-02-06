@@ -19,27 +19,80 @@ class ModelController extends BaseController {
 		$this->layout->main = View::make('brand');
 		$this->layout->title = $brand;
 
-		$models = DB::table('cars')->where('brand', '=', $brand)->distinct()->orderBy('model', 'asc')->lists('model');
+		$models = DB::table('cars')->where('brand', '=', $brand)->where('condition', '=', 'Nieuszkodzony')->distinct()->orderBy('model', 'asc')->lists('model');
 		$this->layout->main->models = $models;
 		$this->layout->main->brand = $brand;
 
-		$offers = DB::table('cars')->where('brand', '=', $brand)->count();
-		$this->layout->main->offers = $offers;
+		$offersCount = DB::table('cars')->where('brand', '=', $brand)->where('condition', '=', 'Nieuszkodzony')->count();
+		$this->layout->main->offersCount = $offersCount;
 
 		$date = new \DateTime("-1 days");
-		$offers24h = DB::table('cars')->where('brand', '=', $brand)->where('data', '>', $date)->count();
+		$offers24h = DB::table('cars')->where('brand', '=', $brand)->where('condition', '=', 'Nieuszkodzony')->where('data', '>', $date)->count();
 		$this->layout->main->offers24h = $offers24h;
 
-		$ceny = DB::table('cars')->select(DB::raw('round(avg(price)) as avg, model'))->where('brand', '=', $brand)->groupBy('model')->get();
+		$ceny = DB::table('cars')->select(DB::raw('round(avg(price)) as avg, model'))->where('brand', '=', $brand)->where('condition', '=', 'Nieuszkodzony')->groupBy('model')->get();
 		$this->layout->main->ceny = $ceny;
 
-		$modeleDane = DB::table('cars')->select(DB::raw('count(*) as count, model'))->where('brand', '=', $brand)->groupBy('model')->get();
+		$modeleDane = DB::table('cars')->select(DB::raw('count(*) as count, model'))->where('brand', '=', $brand)->where('condition', '=', 'Nieuszkodzony')->groupBy('model')->get();
 		$this->layout->main->modeleDane = $modeleDane;
+
+		$offers = DB::table('cars')->where('brand', '=', $brand)->where('condition', '=', 'Nieuszkodzony')->orderBy('data', 'DESC')->limit(300)->get();
+		$this->layout->main->offers = $offers;
 
 	}
 
 	public function showModel($brand, $model) {
-		$this->layout->main = View::make('empty');
+		$this->layout->main = View::make('model');
+		$this->layout->title = $brand . ' ' . $model;
+
+		$offersCount = DB::table('cars')->where('brand', '=', $brand)->where('model', '=', $model)->where('condition', '=', 'Nieuszkodzony')->count();
+		$this->layout->main->offersCount = $offersCount;
+
+		$date = new \DateTime("-1 days");
+		$offers24h = DB::table('cars')->where('brand', '=', $brand)->where('model', '=', $model)->where('condition', '=', 'Nieuszkodzony')->where('data', '>', $date)->count();
+		$this->layout->main->offers24h = $offers24h;
+
+		$ceny = DB::table('cars')->select(DB::raw('round(avg(price)) as price, year'))->where('brand', '=', $brand)->where('model', '=', $model)->where('condition', '=', 'Nieuszkodzony')->groupBy('year')->get();
+		$this->layout->main->ceny = $ceny;
+
+		$offers = DB::table('cars')->where('brand', '=', $brand)->where('model', '=', $model)->where('condition', '=', 'Nieuszkodzony')->orderBy('data', 'DESC')->limit(300)->get();
+		$this->layout->main->offers = $offers;
+
+		$years = DB::table('cars')->where('brand', '=', $brand)->where('model', '=', $model)->where('condition', '=', 'Nieuszkodzony')->distinct()->orderBy('year', 'asc')->lists('year');
+		$this->layout->main->years = $years;
+		$this->layout->main->brand = $brand;
+		$this->layout->main->model = $model;
+	}
+
+	public function showYear($brand, $model, $year) {
+		$this->layout->main = View::make('year');
+		$this->layout->title = $brand . ' ' . $model . ' (' . $year . ')';
+
+		$offersCount = DB::table('cars')->where('brand', '=', $brand)->where('model', '=', $model)->where('year', '=', $year)->where('condition', '=', 'Nieuszkodzony')->count();
+		$this->layout->main->offersCount = $offersCount;
+
+		$date = new \DateTime("-1 days");
+		$offers24h = DB::table('cars')->where('brand', '=', $brand)->where('model', '=', $model)->where('year', '=', $year)->where('condition', '=', 'Nieuszkodzony')->where('data', '>', $date)->count();
+		$this->layout->main->offers24h = $offers24h;
+
+		$ceny = DB::table('cars')->select(DB::raw('round(avg(price)) as price, year'))->where('brand', '=', $brand)->where('model', '=', $model)->where('year', '=', $year)->where('condition', '=', 'Nieuszkodzony')->groupBy('year')->get();
+		$this->layout->main->ceny = $ceny;
+
+		$offers = DB::table('cars')->where('brand', '=', $brand)->where('model', '=', $model)->where('year', '=', $year)->where('condition', '=', 'Nieuszkodzony')->orderBy('data', 'DESC')->limit(300)->get();
+		$this->layout->main->offers = $offers;
+
+		$fuels = ['LPG', 'Benzyna', 'Diesel'];
+		$ceny = array();
+		foreach ($fuels as $fuel) {
+			$c = DB::table('cars')->select(DB::raw('price, milage'))->where('brand', '=', $brand)->where('model', '=', $model)->where('year', '=', $year)
+			                      ->where('milage', '>', 1000)->where('fuel', '=', $fuel)->where('condition', '=', 'Nieuszkodzony')->get();
+			$ceny[] = array('name' => $fuel, 'data' => $c);
+		}
+		$this->layout->main->ceny = $ceny;
+
+		$this->layout->main->year = $year;
+		$this->layout->main->brand = $brand;
+		$this->layout->main->model = $model;
 	}
 
 }

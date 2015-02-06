@@ -1,3 +1,9 @@
+<ol class="breadcrumb">
+  <li><a href="/car/{{ $brand }}">{{ $brand }}</a></li>
+  <li><a href="/car/{{ $brand }}/{{ $model }}">{{ $model }}</a></li>
+  <li class="active">{{ $year }}</li>
+</ol>
+
 <div class="row">
 	<div class="col-lg-3 col-md-6">
 		<div class="panel panel-primary">
@@ -40,24 +46,6 @@
 <div class="row">
 	<div class="col-lg-4">
 		<div class="panel panel-default">
-			<div class="panel-heading">
-				Modele
-			</div>
-			<div class="panel-body">
-				@foreach($models as $model)
-					<div class="col-md-3 panel">
-						<a href="/car/{{ $brand }}/{{ $model }}">{{ $model }}</a>
-					</div>
-				@endforeach
-			</div>
-		</div>
-	</div>
-
-	<div class="col-lg-4">
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				Średnie ceny
-			</div>
 			<div class="panel-body">
 				<div id="wykres-ceny" style="height: 250px;"></div>
 			</div>
@@ -65,42 +53,62 @@
 	</div>
 
 <script>
-new Morris.Donut({
-	element: 'wykres-ceny',
-	data: [
-		@foreach ($ceny as $model)
-			{ label: "{{ $model["model"] }}", value: {{ $model["avg"] }} },
-		@endforeach
-	],
-	labels: ['Ofert']
+$(function () {
+    $('#wykres-ceny').highcharts({
+        chart: {
+            type: 'scatter'
+        },
+        title: {
+            text: 'Cena od przebiegu'
+        },
+        yAxis: {
+            title: {
+                text: 'Cena'
+            }
+        },
+        xAxis: {
+            title: {
+                text: 'Przebieg'
+            }
+        },
+        tooltip: {
+            formatter: function () {
+                return '<b>' + this.series.name + '</b><br/>' +
+                    'Przebieg: ' + this.x.format() +'<br/>' +
+                    'Cena: ' + ': ' + this.y.format();
+            }
+        },
+        plotOptions: {
+            series: {
+                cursor: 'pointer',
+                point: {
+                    events: {
+                        click: function (e) {
+                            $('#offersTable').DataTable().search(this.x.format()).draw();
+                        }
+                    }
+                },
+                marker: {
+                    lineWidth: 1
+                }
+            }
+        },
+        series: [
+        	@foreach($ceny as $typ)
+        	{
+	        	showInLegend: false,
+	        	name: '{{ $typ['name'] }}',
+	        	data: [
+		        @foreach ($typ['data'] as $cena)
+					[ {{ $cena["milage"] }}, {{ $cena["price"] }} ],
+				@endforeach
+		        ],
+    		},
+    		@endforeach
+    	]
+    });
 });
 </script>
-
-	<div class="col-lg-4">
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				Ofert
-			</div>
-			<div class="panel-body">
-				<div id="wykres-ofert" style="height: 250px;"></div>
-			</div>
-		</div>
-	</div>
-
-<script>
-new Morris.Donut({
-	element: 'wykres-ofert',
-	data: [
-		@foreach ($modeleDane as $model)
-			{ label: "{{ $model["model"] }}", value: {{ $model["count"] }} },
-		@endforeach
-	],
-	labels: ['Ofert']
-});
-</script>
-
-
-</div>
 
 <div class="row">
 	<div class="col-lg-12">

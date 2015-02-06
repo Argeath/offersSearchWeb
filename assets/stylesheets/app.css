@@ -1,18 +1,54 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:800,400&subset=latin,latin-ext);
+
 body {
-	background: #E9E9E9;
+	background: url(http://globalworkteam.com/blog/wp-content/uploads/2014/07/white-room-background_web.jpg) no-repeat center center fixed; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	font-family: 'Open Sans', sans-serif;
 }
 
 .login-body {
-	width: 400px;
+	width: 300px;
 	background: #FFF;
 	padding: 30px;
-	border-radius: 15px;
 	position: absolute;
 	top: calc(50% - 200px);
-	left: calc(50% - 200px);
+	left: calc(50% - 150px);
 	vertical-align: middle;
 	display: inline-block;
+	border: 1px solid #CCC; 
 	-webkit-box-shadow: 4px 4px 9px 0px rgba(50, 50, 50, 0.5);
 	-moz-box-shadow:    4px 4px 9px 0px rgba(50, 50, 50, 0.5);
 	box-shadow:         4px 4px 9px 0px rgba(50, 50, 50, 0.5);
+}
+
+.login-body .btn {
+}
+
+.sidebar, #page-wrapper {
+	margin-bottom: 60px;
+}
+
+#footer {
+	position: fixed;
+	width: 200px;
+	right: -5px;
+	bottom: -5px;
+	margin-bottom: 0;
+	padding: 10px;
+	text-align: center;
+}
+
+.no-padding {
+	padding: 0;
+}
+
+li .row {
+	margin: 0;
+}
+
+li .text-center {
+	line-height: 34px;
 }

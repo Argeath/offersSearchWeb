@@ -11,8 +11,11 @@
 |
  */
 
+Route::get('offers/newest', "OffersController@showNewest");
+
 Route::get('car/{brand}', "ModelController@showBrand");
 Route::get('car/{brand}/{model}', "ModelController@showModel");
+Route::get('car/{brand}/{model}/{year}', "ModelController@showYear");
 
 Route::get('login', "LoginController@showLogin");
 Route::post('login', "LoginController@doLogin");

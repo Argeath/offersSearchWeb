@@ -17,7 +17,7 @@ class LoginController extends BaseController {
 	protected $layout = "empty";
 
 	public function showLogin() {
-		echo Hash::make('qazqazqaz');
+		//echo Hash::make('demo123');
 		$this->layout->main = View::make('login');
 	}
 

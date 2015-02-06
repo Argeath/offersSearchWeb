@@ -12,10 +12,7 @@
 	<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 
 	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-
-	<!-- Optional theme -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
@@ -31,7 +28,23 @@
 	<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
 
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+
+    <script src="//cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
+
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.4/css/jquery.dataTables.min.css">
+
+    <link rel="stylesheet" href="//cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/3/dataTables.bootstrap.css">
+    <script src="//cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+    <script src="//cdn.datatables.net/plug-ins/3cfcc339e89/sorting/numeric-comma.js"></script>
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
     <link rel="stylesheet" href="/assets/stylesheets/app.css">
+    <script src="/assets/javascript/app.js"></script>
+
+
+
 
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -43,7 +56,7 @@
 </head>
 <body>
 <div id="wrapper">
-	<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+	<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0" id="menu">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="sr-only">Menu</span>
@@ -56,6 +69,92 @@
         <!-- /.navbar-header -->
 
         <ul class="nav navbar-top-links navbar-right">
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-filter"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-tasks">
+                {{ Form::open(array('url' => 'filter')) }}
+                    <li>
+                        <a href="#">
+                            <div>
+                                <p class="text-center">
+                                    <strong>Filtruj dane</strong>
+                                </p>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <div class="row">
+                            <div class="col-sm-4 no-padding text-center">
+                                Rocznik
+                            </div>
+                            <div class="col-sm-4 no-padding">
+                                {{ Form::text('yearFrom', Input::old('yearFrom'), array('placeholder' => 'od', 'class' => 'form-control')) }}
+                            </div>
+                            <div class="col-sm-4 no-padding">
+                                {{ Form::text('yearTo', Input::old('yearTo'), array('placeholder' => 'do', 'class' => 'form-control')) }}
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="row">
+                            <div class="col-sm-4 no-padding text-center">
+                                Przebieg
+                            </div>
+                            <div class="col-sm-4 no-padding">
+                                {{ Form::text('milageFrom', Input::old('milageFrom'), array('placeholder' => 'od', 'class' => 'form-control')) }}
+                            </div>
+                            <div class="col-sm-4 no-padding">
+                                {{ Form::text('milageTo', Input::old('milageTo'), array('placeholder' => 'do', 'class' => 'form-control')) }}
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="row">
+                            <div class="col-sm-4 no-padding text-center">
+                                Moc silnika
+                            </div>
+                            <div class="col-sm-4 no-padding">
+                                {{ Form::text('powerFrom', Input::old('powerFrom'), array('placeholder' => 'od', 'class' => 'form-control')) }}
+                            </div>
+                            <div class="col-sm-4 no-padding">
+                                {{ Form::text('powerTo', Input::old('powerTo'), array('placeholder' => 'do', 'class' => 'form-control')) }}
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="row">
+                            <div class="col-sm-4 no-padding text-center">
+                                Cena
+                            </div>
+                            <div class="col-sm-4 no-padding">
+                                {{ Form::text('priceFrom', Input::old('priceFrom'), array('placeholder' => 'od', 'class' => 'form-control')) }}
+                            </div>
+                            <div class="col-sm-4 no-padding">
+                                {{ Form::text('priceTo', Input::old('priceTo'), array('placeholder' => 'do', 'class' => 'form-control')) }}
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="row">
+                            <div class="col-sm-4 no-padding text-center">
+                                Województwo
+                            </div>
+                            <div class="col-sm-8 no-padding">
+                                {{ Form::select('wojewodztwo', array_merge(['wszystkie'], GeoHelper::$wojewodztwa), 'wszystkie', ['class' => 'form-control']) }}
+                            </div>
+                        </div>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <input type="submit" class="btn btn-block btn-success" value="Filtruj"/>
+                    </li>
+                {{ Form::close() }}
+
+                </ul>
+                <!-- /.dropdown-tasks -->
+            </li>
             <!-- /.dropdown -->
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -146,10 +245,10 @@
                         <!-- /.nav-second-level -->
                     </li>
                     <li>
-                        <a href="tables.html"><i class="fa fa-bell fa-fw"></i> Najnowsze oferty</a>
+                        <a href="/offers/newest"><i class="fa fa-bell fa-fw"></i> Najnowsze oferty</a>
                     </li>
                     <li>
-                        <a href="forms.html"><i class="fa fa-star fa-fw"></i> Najciekawsze oferty</a>
+                        <a href="/offers/best"><i class="fa fa-star fa-fw"></i> Najciekawsze oferty</a>
                     </li>
                 </ul>
             </div>
@@ -157,6 +256,10 @@
         </div>
         <!-- /.navbar-static-side -->
     </nav>
+
+    <div id="footer" class="panel">
+        © 2015 Dominik Kinal
+    </div>
 
      <div id="page-wrapper">
         <div class="row">

@@ -1,3 +1,8 @@
+<ol class="breadcrumb">
+  <li><a href="/car/{{ $brand }}">{{ $brand }}</a></li>
+  <li class="active">{{ $model }}</li>
+</ol>
+
 <div class="row">
 	<div class="col-lg-3 col-md-6">
 		<div class="panel panel-primary">
@@ -40,24 +45,6 @@
 <div class="row">
 	<div class="col-lg-4">
 		<div class="panel panel-default">
-			<div class="panel-heading">
-				Modele
-			</div>
-			<div class="panel-body">
-				@foreach($models as $model)
-					<div class="col-md-3 panel">
-						<a href="/car/{{ $brand }}/{{ $model }}">{{ $model }}</a>
-					</div>
-				@endforeach
-			</div>
-		</div>
-	</div>
-
-	<div class="col-lg-4">
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				Średnie ceny
-			</div>
 			<div class="panel-body">
 				<div id="wykres-ceny" style="height: 250px;"></div>
 			</div>
@@ -65,39 +52,46 @@
 	</div>
 
 <script>
-new Morris.Donut({
-	element: 'wykres-ceny',
-	data: [
-		@foreach ($ceny as $model)
-			{ label: "{{ $model["model"] }}", value: {{ $model["avg"] }} },
-		@endforeach
-	],
-	labels: ['Ofert']
+$(function () {
+    $('#wykres-ceny').highcharts({
+        chart: {
+            type: 'line'
+        },
+        title: {
+            text: 'Średnia cena od rocznika'
+        },
+        yAxis: {
+            title: {
+                text: 'Cena'
+            }
+        },
+        series: [{
+        	showInLegend: false,
+        	name: '1',
+        	data: [
+	        @foreach ($ceny as $cena)
+				[ {{ $cena["year"] }}, {{ $cena["price"] }} ],
+			@endforeach
+	        ]
+    	}]
+    });
 });
 </script>
 
 	<div class="col-lg-4">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				Ofert
+				Roczniki
 			</div>
 			<div class="panel-body">
-				<div id="wykres-ofert" style="height: 250px;"></div>
+				@foreach($years as $year)
+					<div class="col-md-3 panel">
+						<a href="/car/{{ $brand }}/{{ $model }}/{{ $year }}">{{ $year }}</a>
+					</div>
+				@endforeach
 			</div>
 		</div>
 	</div>
-
-<script>
-new Morris.Donut({
-	element: 'wykres-ofert',
-	data: [
-		@foreach ($modeleDane as $model)
-			{ label: "{{ $model["model"] }}", value: {{ $model["count"] }} },
-		@endforeach
-	],
-	labels: ['Ofert']
-});
-</script>
 
 
 </div>

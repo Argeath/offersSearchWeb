@@ -18,6 +18,8 @@ class BaseController extends Controller {
 		$brands = DB::table('cars')->distinct()->orderBy('brand', 'asc')->lists('brand');
 		$this->layout->brands = $brands;
 
+		DB::table('cars')->where('year', '<', 1950)->orWhere('milage', '>', 500000)->delete();
+
 	}
 
 }
