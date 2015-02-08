@@ -20,6 +20,14 @@ class BaseController extends Controller {
 
 		DB::table('cars')->where('year', '<', 1950)->orWhere('milage', '>', 500000)->delete();
 
+		$filters = FilterHelper::getFilters();
+
+		$this->layout->year = $filters['year'];
+		$this->layout->milage = $filters['milage'];
+		$this->layout->power = $filters['power'];
+		$this->layout->price = $filters['price'];
+		$this->layout->wojewodztwo = $filters['wojewodztwo'];
+
 	}
 
 }

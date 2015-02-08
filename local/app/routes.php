@@ -11,6 +11,7 @@
 |
  */
 
+Route::post('filter', "FilterController@doSetFilter");
 Route::get('offers/newest', "OffersController@showNewest");
 
 Route::get('car/{brand}', "ModelController@showBrand");

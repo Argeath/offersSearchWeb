@@ -25,7 +25,7 @@
 	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
 	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
-	<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.2/raphael-min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
 
     <script src="http://code.highcharts.com/highcharts.js"></script>
@@ -70,6 +70,11 @@
 
         <ul class="nav navbar-top-links navbar-right">
             <li class="dropdown">
+                <a href="/assets/target.rar" target="_blank">
+                    <i class="fa fa-download"></i>
+                </a>
+            </li>
+            <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                     <i class="fa fa-filter"></i>
                 </a>
@@ -90,10 +95,10 @@
                                 Rocznik
                             </div>
                             <div class="col-sm-4 no-padding">
-                                {{ Form::text('yearFrom', Input::old('yearFrom'), array('placeholder' => 'od', 'class' => 'form-control')) }}
+                                {{ Form::text('yearFrom', $year[0], array('placeholder' => 'od', 'class' => 'form-control')) }}
                             </div>
                             <div class="col-sm-4 no-padding">
-                                {{ Form::text('yearTo', Input::old('yearTo'), array('placeholder' => 'do', 'class' => 'form-control')) }}
+                                {{ Form::text('yearTo', $year[1], array('placeholder' => 'do', 'class' => 'form-control')) }}
                             </div>
                         </div>
                     </li>
@@ -103,10 +108,10 @@
                                 Przebieg
                             </div>
                             <div class="col-sm-4 no-padding">
-                                {{ Form::text('milageFrom', Input::old('milageFrom'), array('placeholder' => 'od', 'class' => 'form-control')) }}
+                                {{ Form::text('milageFrom', $milage[0], array('placeholder' => 'od', 'class' => 'form-control')) }}
                             </div>
                             <div class="col-sm-4 no-padding">
-                                {{ Form::text('milageTo', Input::old('milageTo'), array('placeholder' => 'do', 'class' => 'form-control')) }}
+                                {{ Form::text('milageTo', $milage[1], array('placeholder' => 'do', 'class' => 'form-control')) }}
                             </div>
                         </div>
                     </li>
@@ -116,10 +121,10 @@
                                 Moc silnika
                             </div>
                             <div class="col-sm-4 no-padding">
-                                {{ Form::text('powerFrom', Input::old('powerFrom'), array('placeholder' => 'od', 'class' => 'form-control')) }}
+                                {{ Form::text('powerFrom', $power[0], array('placeholder' => 'od', 'class' => 'form-control')) }}
                             </div>
                             <div class="col-sm-4 no-padding">
-                                {{ Form::text('powerTo', Input::old('powerTo'), array('placeholder' => 'do', 'class' => 'form-control')) }}
+                                {{ Form::text('powerTo', $power[1], array('placeholder' => 'do', 'class' => 'form-control')) }}
                             </div>
                         </div>
                     </li>
@@ -129,10 +134,10 @@
                                 Cena
                             </div>
                             <div class="col-sm-4 no-padding">
-                                {{ Form::text('priceFrom', Input::old('priceFrom'), array('placeholder' => 'od', 'class' => 'form-control')) }}
+                                {{ Form::text('priceFrom', $price[0], array('placeholder' => 'od', 'class' => 'form-control')) }}
                             </div>
                             <div class="col-sm-4 no-padding">
-                                {{ Form::text('priceTo', Input::old('priceTo'), array('placeholder' => 'do', 'class' => 'form-control')) }}
+                                {{ Form::text('priceTo', $price[1], array('placeholder' => 'do', 'class' => 'form-control')) }}
                             </div>
                         </div>
                     </li>

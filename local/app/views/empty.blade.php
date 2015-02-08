@@ -36,9 +36,7 @@
 </head>
 <body>
     <div id="wrapper">
-    	{{ $main}}
+    	{{ $main }}
     </div>
-
 </body>
-
 </html>

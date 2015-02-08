@@ -46,8 +46,8 @@ class OffersHelper {
 		foreach ($arr as $k => $r) {
 			$arr[$k] = trim($r);
 		}
-
-		return implode($arr, ', ');
+		return $arr[0];
+		//return implode($arr, ', ');
 	}
 
 	public static function cleanInt($int) {

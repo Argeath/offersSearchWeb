@@ -19,17 +19,39 @@ class HomeController extends BaseController {
 		$this->layout->main = View::make('dashboard');
 		$this->layout->title = "Podgląd";
 
-		$offers = DB::table('cars')->count();
+		$filters = FilterHelper::getFilters();
+
+		$offers = DB::table('cars')
+			->whereBetween('year', $filters['year'])
+			->whereBetween('milage', $filters['milage'])
+			->whereBetween('power', $filters['power'])
+			->whereBetween('price', $filters['price'])
+			->count();
 		$this->layout->main->offers = $offers;
 
 		$date = new \DateTime("-1 days");
-		$offers24h = DB::table('cars')->where('data', '>', $date)->count();
+		$offers24h = DB::table('cars')->where('data', '>', $date)
+			->whereBetween('year', $filters['year'])
+			->whereBetween('milage', $filters['milage'])
+			->whereBetween('power', $filters['power'])
+			->whereBetween('price', $filters['price'])
+			->count();
 		$this->layout->main->offers24h = $offers24h;
 
-		$markiDane = DB::table('cars')->select(DB::raw('count(*) as count, brand'))->groupBy('brand')->get();
+		$markiDane = DB::table('cars')->select(DB::raw('count(*) as count, brand'))
+			->whereBetween('year', $filters['year'])
+			->whereBetween('milage', $filters['milage'])
+			->whereBetween('power', $filters['power'])
+			->whereBetween('price', $filters['price'])
+			->groupBy('brand')->get();
 		$this->layout->main->markiDane = $markiDane;
 
-		$modeleDane = DB::table('cars')->select(DB::raw('count(*) as count, brand, model'))->groupBy('model')->get();
+		$modeleDane = DB::table('cars')->select(DB::raw('count(*) as count, brand, model'))
+			->whereBetween('year', $filters['year'])
+			->whereBetween('milage', $filters['milage'])
+			->whereBetween('power', $filters['power'])
+			->whereBetween('price', $filters['price'])
+			->groupBy('model')->get();
 		$this->layout->main->modeleDane = $modeleDane;
 	}
 
