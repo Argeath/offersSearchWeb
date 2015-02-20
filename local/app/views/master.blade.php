@@ -147,7 +147,7 @@
                                 Województwo
                             </div>
                             <div class="col-sm-8 no-padding">
-                                {{ Form::select('state', array_merge(['wszystkie'], GeoHelper::$states), $state, ['class' => 'form-control']) }}   
+                                {{ Form::select('state', array_merge(['wszystkie'], GeoHelper::$states), $state, ['class' => 'form-control']) }}
                             </div>
                         </div>
                     </li>
@@ -175,7 +175,14 @@
                             </div>
                         </a>
                     </li>
-                    <li class="divider"></li>
+                    @foreach($history as $h)
+                        <li class="divider"></li>
+                        <li>
+                            <a href="{{ $h['link'] }}">
+                                {{ $h['title'] }}
+                            </a>
+                        </li>
+                    @endforeach
                 </ul>
                 <!-- /.dropdown-tasks -->
             </li>
