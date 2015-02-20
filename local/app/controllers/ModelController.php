@@ -25,7 +25,14 @@ class ModelController extends BaseController {
 			->whereBetween('year', $filters['year'])
 			->whereBetween('milage', $filters['milage'])
 			->whereBetween('power', $filters['power'])
+			->where(function($query) {
+				$filters = FilterHelper::getFilters();
+				if($filters['state'] > 0) {
+					$query->where('state', '=', GeoHelper::$states[$filters['state']-1]);
+				}
+			})
 			->whereBetween('price', $filters['price'])->where('brand', '=', $brand)->where('condition', '=', 'Nieuszkodzony')->distinct()->orderBy('model', 'asc')->lists('model');
+		
 		$this->layout->main->models = $models;
 		$this->layout->main->brand = $brand;
 
@@ -33,6 +40,12 @@ class ModelController extends BaseController {
 			->whereBetween('year', $filters['year'])
 			->whereBetween('milage', $filters['milage'])
 			->whereBetween('power', $filters['power'])
+			->where(function($query) {
+				$filters = FilterHelper::getFilters();
+				if($filters['state'] > 0) {
+					$query->where('state', '=', GeoHelper::$states[$filters['state']-1]);
+				}
+			})
 			->whereBetween('price', $filters['price'])->where('brand', '=', $brand)->where('condition', '=', 'Nieuszkodzony')->count();
 		$this->layout->main->offersCount = $offersCount;
 
@@ -41,6 +54,12 @@ class ModelController extends BaseController {
 			->whereBetween('year', $filters['year'])
 			->whereBetween('milage', $filters['milage'])
 			->whereBetween('power', $filters['power'])
+			->where(function($query) {
+				$filters = FilterHelper::getFilters();
+				if($filters['state'] > 0) {
+					$query->where('state', '=', GeoHelper::$states[$filters['state']-1]);
+				}
+			})
 			->whereBetween('price', $filters['price'])->where('brand', '=', $brand)->where('condition', '=', 'Nieuszkodzony')->where('data', '>', $date)->count();
 		$this->layout->main->offers24h = $offers24h;
 
@@ -48,6 +67,12 @@ class ModelController extends BaseController {
 			->whereBetween('year', $filters['year'])
 			->whereBetween('milage', $filters['milage'])
 			->whereBetween('power', $filters['power'])
+			->where(function($query) {
+				$filters = FilterHelper::getFilters();
+				if($filters['state'] > 0) {
+					$query->where('state', '=', GeoHelper::$states[$filters['state']-1]);
+				}
+			})
 			->whereBetween('price', $filters['price'])->where('brand', '=', $brand)->where('condition', '=', 'Nieuszkodzony')->groupBy('model')->get();
 		$this->layout->main->ceny = $ceny;
 
@@ -55,6 +80,12 @@ class ModelController extends BaseController {
 			->whereBetween('year', $filters['year'])
 			->whereBetween('milage', $filters['milage'])
 			->whereBetween('power', $filters['power'])
+			->where(function($query) {
+				$filters = FilterHelper::getFilters();
+				if($filters['state'] > 0) {
+					$query->where('state', '=', GeoHelper::$states[$filters['state']-1]);
+				}
+			})
 			->whereBetween('price', $filters['price'])->where('brand', '=', $brand)->where('condition', '=', 'Nieuszkodzony')->groupBy('model')->get();
 		$this->layout->main->modeleDane = $modeleDane;
 
@@ -62,6 +93,12 @@ class ModelController extends BaseController {
 			->whereBetween('year', $filters['year'])
 			->whereBetween('milage', $filters['milage'])
 			->whereBetween('power', $filters['power'])
+			->where(function($query) {
+				$filters = FilterHelper::getFilters();
+				if($filters['state'] > 0) {
+					$query->where('state', '=', GeoHelper::$states[$filters['state']-1]);
+				}
+			})
 			->whereBetween('price', $filters['price'])->where('brand', '=', $brand)->where('condition', '=', 'Nieuszkodzony')->orderBy('data', 'DESC')->limit(300)->get();
 		$this->layout->main->offers = $offers;
 
@@ -77,6 +114,12 @@ class ModelController extends BaseController {
 			->whereBetween('year', $filters['year'])
 			->whereBetween('milage', $filters['milage'])
 			->whereBetween('power', $filters['power'])
+			->where(function($query) {
+				$filters = FilterHelper::getFilters();
+				if($filters['state'] > 0) {
+					$query->where('state', '=', GeoHelper::$states[$filters['state']-1]);
+				}
+			})
 			->whereBetween('price', $filters['price'])->where('brand', '=', $brand)->where('model', '=', $model)->where('condition', '=', 'Nieuszkodzony')->count();
 		$this->layout->main->offersCount = $offersCount;
 
@@ -85,6 +128,12 @@ class ModelController extends BaseController {
 			->whereBetween('year', $filters['year'])
 			->whereBetween('milage', $filters['milage'])
 			->whereBetween('power', $filters['power'])
+			->where(function($query) {
+				$filters = FilterHelper::getFilters();
+				if($filters['state'] > 0) {
+					$query->where('state', '=', GeoHelper::$states[$filters['state']-1]);
+				}
+			})
 			->whereBetween('price', $filters['price'])->where('brand', '=', $brand)->where('model', '=', $model)->where('condition', '=', 'Nieuszkodzony')->where('data', '>', $date)->count();
 		$this->layout->main->offers24h = $offers24h;
 
@@ -92,6 +141,12 @@ class ModelController extends BaseController {
 			->whereBetween('year', $filters['year'])
 			->whereBetween('milage', $filters['milage'])
 			->whereBetween('power', $filters['power'])
+			->where(function($query) {
+				$filters = FilterHelper::getFilters();
+				if($filters['state'] > 0) {
+					$query->where('state', '=', GeoHelper::$states[$filters['state']-1]);
+				}
+			})
 			->whereBetween('price', $filters['price'])->where('brand', '=', $brand)->where('model', '=', $model)->where('condition', '=', 'Nieuszkodzony')->groupBy('year')->get();
 		$this->layout->main->ceny = $ceny;
 
@@ -99,6 +154,12 @@ class ModelController extends BaseController {
 			->whereBetween('year', $filters['year'])
 			->whereBetween('milage', $filters['milage'])
 			->whereBetween('power', $filters['power'])
+			->where(function($query) {
+				$filters = FilterHelper::getFilters();
+				if($filters['state'] > 0) {
+					$query->where('state', '=', GeoHelper::$states[$filters['state']-1]);
+				}
+			})
 			->whereBetween('price', $filters['price'])->where('brand', '=', $brand)->where('model', '=', $model)->where('condition', '=', 'Nieuszkodzony')->orderBy('data', 'DESC')->limit(300)->get();
 		$this->layout->main->offers = $offers;
 
@@ -106,6 +167,12 @@ class ModelController extends BaseController {
 			->whereBetween('year', $filters['year'])
 			->whereBetween('milage', $filters['milage'])
 			->whereBetween('power', $filters['power'])
+			->where(function($query) {
+				$filters = FilterHelper::getFilters();
+				if($filters['state'] > 0) {
+					$query->where('state', '=', GeoHelper::$states[$filters['state']-1]);
+				}
+			})
 			->whereBetween('price', $filters['price'])->where('brand', '=', $brand)->where('model', '=', $model)->where('condition', '=', 'Nieuszkodzony')->distinct()->orderBy('year', 'asc')->lists('year');
 		$this->layout->main->years = $years;
 		$this->layout->main->brand = $brand;
@@ -122,6 +189,12 @@ class ModelController extends BaseController {
 			->whereBetween('year', $filters['year'])
 			->whereBetween('milage', $filters['milage'])
 			->whereBetween('power', $filters['power'])
+			->where(function($query) {
+				$filters = FilterHelper::getFilters();
+				if($filters['state'] > 0) {
+					$query->where('state', '=', GeoHelper::$states[$filters['state']-1]);
+				}
+			})
 			->whereBetween('price', $filters['price'])->where('brand', '=', $brand)->where('model', '=', $model)->where('year', '=', $year)->where('condition', '=', 'Nieuszkodzony')->count();
 		$this->layout->main->offersCount = $offersCount;
 
@@ -130,6 +203,12 @@ class ModelController extends BaseController {
 			->whereBetween('year', $filters['year'])
 			->whereBetween('milage', $filters['milage'])
 			->whereBetween('power', $filters['power'])
+			->where(function($query) {
+				$filters = FilterHelper::getFilters();
+				if($filters['state'] > 0) {
+					$query->where('state', '=', GeoHelper::$states[$filters['state']-1]);
+				}
+			})
 			->whereBetween('price', $filters['price'])->where('brand', '=', $brand)->where('model', '=', $model)->where('year', '=', $year)->where('condition', '=', 'Nieuszkodzony')->where('data', '>', $date)->count();
 		$this->layout->main->offers24h = $offers24h;
 
@@ -137,6 +216,12 @@ class ModelController extends BaseController {
 			->whereBetween('year', $filters['year'])
 			->whereBetween('milage', $filters['milage'])
 			->whereBetween('power', $filters['power'])
+			->where(function($query) {
+				$filters = FilterHelper::getFilters();
+				if($filters['state'] > 0) {
+					$query->where('state', '=', GeoHelper::$states[$filters['state']-1]);
+				}
+			})
 			->whereBetween('price', $filters['price'])->where('brand', '=', $brand)->where('model', '=', $model)->where('year', '=', $year)->where('condition', '=', 'Nieuszkodzony')->groupBy('year')->get();
 		$this->layout->main->ceny = $ceny;
 
@@ -144,6 +229,12 @@ class ModelController extends BaseController {
 			->whereBetween('year', $filters['year'])
 			->whereBetween('milage', $filters['milage'])
 			->whereBetween('power', $filters['power'])
+			->where(function($query) {
+				$filters = FilterHelper::getFilters();
+				if($filters['state'] > 0) {
+					$query->where('state', '=', GeoHelper::$states[$filters['state']-1]);
+				}
+			})
 			->whereBetween('price', $filters['price'])->where('brand', '=', $brand)->where('model', '=', $model)->where('year', '=', $year)->where('condition', '=', 'Nieuszkodzony')->orderBy('data', 'DESC')->limit(300)->get();
 		$this->layout->main->offers = $offers;
 
@@ -154,6 +245,12 @@ class ModelController extends BaseController {
 				->whereBetween('year', $filters['year'])
 				->whereBetween('milage', $filters['milage'])
 				->whereBetween('power', $filters['power'])
+			->where(function($query) {
+				$filters = FilterHelper::getFilters();
+				if($filters['state'] > 0) {
+					$query->where('state', '=', GeoHelper::$states[$filters['state']-1]);
+				}
+			})
 				->whereBetween('price', $filters['price'])->where('brand', '=', $brand)->where('model', '=', $model)->where('year', '=', $year)
 			                      ->where('milage', '>', 1000)->where('fuel', '=', $fuel)->where('condition', '=', 'Nieuszkodzony')->get();
 			$ceny[] = array('name' => $fuel, 'data' => $c);

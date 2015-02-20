@@ -147,7 +147,7 @@
                                 Województwo
                             </div>
                             <div class="col-sm-8 no-padding">
-                                {{ Form::select('wojewodztwo', array_merge(['wszystkie'], GeoHelper::$wojewodztwa), 'wszystkie', ['class' => 'form-control']) }}
+                                {{ Form::select('state', array_merge(['wszystkie'], GeoHelper::$states), $state, ['class' => 'form-control']) }}   
                             </div>
                         </div>
                     </li>

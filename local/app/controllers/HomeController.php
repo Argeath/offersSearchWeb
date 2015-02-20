@@ -26,6 +26,12 @@ class HomeController extends BaseController {
 			->whereBetween('milage', $filters['milage'])
 			->whereBetween('power', $filters['power'])
 			->whereBetween('price', $filters['price'])
+			->where(function($query) {
+				$filters = FilterHelper::getFilters();
+				if($filters['state'] > 0) {
+					$query->where('state', '=', GeoHelper::$states[$filters['state']-1]);
+				}
+			})
 			->count();
 		$this->layout->main->offers = $offers;
 
@@ -35,6 +41,12 @@ class HomeController extends BaseController {
 			->whereBetween('milage', $filters['milage'])
 			->whereBetween('power', $filters['power'])
 			->whereBetween('price', $filters['price'])
+			->where(function($query) {
+				$filters = FilterHelper::getFilters();
+				if($filters['state'] > 0) {
+					$query->where('state', '=', GeoHelper::$states[$filters['state']-1]);
+				}
+			})
 			->count();
 		$this->layout->main->offers24h = $offers24h;
 
@@ -43,6 +55,12 @@ class HomeController extends BaseController {
 			->whereBetween('milage', $filters['milage'])
 			->whereBetween('power', $filters['power'])
 			->whereBetween('price', $filters['price'])
+			->where(function($query) {
+				$filters = FilterHelper::getFilters();
+				if($filters['state'] > 0) {
+					$query->where('state', '=', GeoHelper::$states[$filters['state']-1]);
+				}
+			})
 			->groupBy('brand')->get();
 		$this->layout->main->markiDane = $markiDane;
 
@@ -51,6 +69,12 @@ class HomeController extends BaseController {
 			->whereBetween('milage', $filters['milage'])
 			->whereBetween('power', $filters['power'])
 			->whereBetween('price', $filters['price'])
+			->where(function($query) {
+				$filters = FilterHelper::getFilters();
+				if($filters['state'] > 0) {
+					$query->where('state', '=', GeoHelper::$states[$filters['state']-1]);
+				}
+			})
 			->groupBy('model')->get();
 		$this->layout->main->modeleDane = $modeleDane;
 	}

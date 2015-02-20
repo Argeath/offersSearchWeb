@@ -6,12 +6,12 @@ class FilterHelper {
 		$milage = [Cache::get('FilterMilageFrom', 0), Cache::get('FilterMilageTo', 500000)];
 		$power = [Cache::get('FilterPowerFrom', 0), Cache::get('FilterPowerTo', 1500)];
 		$price = [Cache::get('FilterPriceFrom', 0), Cache::get('FilterPriceTo', 500000)];
-		$wojewodztwo = Cache::get('FilterWojewodztwo', 'wszystkie');
+		$state = Cache::get('FilterState', 'wszystkie');
 
 		return ['year' => $year,
 			'milage' => $milage,
 			'power' => $power,
 			'price' => $price,
-			'wojewodztwo' => $wojewodztwo];
+			'state' => $state];
 	}
 }

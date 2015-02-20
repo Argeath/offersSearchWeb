@@ -1,7 +1,7 @@
 <?php
 
 class OffersHelper {
-	public static function cleanAddress($address) {
+	public static function cleanAddress($address, $elem = 0) {
 		$s = str_replace(', ', ';', $address);
 		$arr = explode(';', $s);
 		if (count($arr) < 1) {
@@ -46,8 +46,11 @@ class OffersHelper {
 		foreach ($arr as $k => $r) {
 			$arr[$k] = trim($r);
 		}
-		return $arr[0];
-		//return implode($arr, ', ');
+		try {
+			return $arr[$elem];
+		} catch(Exception $e) {
+			return "";
+		}
 	}
 
 	public static function cleanInt($int) {

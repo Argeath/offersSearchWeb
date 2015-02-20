@@ -26,7 +26,9 @@ class BaseController extends Controller {
 		$this->layout->milage = $filters['milage'];
 		$this->layout->power = $filters['power'];
 		$this->layout->price = $filters['price'];
-		$this->layout->wojewodztwo = $filters['wojewodztwo'];
+		$this->layout->state = $filters['state'];
+
+		GeoHelper::extractStates();
 
 	}
 

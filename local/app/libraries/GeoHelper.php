@@ -1,7 +1,7 @@
 <?php
 
 class GeoHelper {
-	public static $wojewodztwa = [
+	public static $states = [
 		'Pomorskie',
 		'Zachodniopomorskie',
 		'Kujawsko-pomorskie',
@@ -65,5 +65,47 @@ class GeoHelper {
 	public static function getDistanceTo($to) {
 		$loc = GeoHelper::getUserLocation();
 		return GeoHelper::getDistanceBetween($loc, $to);
+	}
+
+	public static function extractState($str, $elem = 1) {
+		$txt = OffersHelper::cleanAddress($str, $elem);
+
+		if($txt == "") {
+			return false;
+		}
+
+		$states = array_map('strtolower', GeoHelper::$states);
+		if(in_array(strtolower($txt), $states)) {
+			return ucfirst(strtolower($txt));
+		}
+
+		$looking = substr(strtolower($txt), 0, 7);
+		foreach($states as $state) {
+			if($looking == substr($state, 0, 7)) {
+				return ucfirst($state);
+			}
+		}
+
+		if($elem < 3) {
+			return GeoHelper::extractState($str, ++$elem);
+		}
+		return false;
+	}
+
+	public static function extractStates() {
+		$offers = DB::table('cars')->whereNull('state')->orderBy('data', 'DESC')->limit(10000)->get();
+		$updates = [];
+		foreach($offers as $offer) {
+			$state = GeoHelper::extractState($offer['address']);
+			if($state) {
+				$updates[$offer['id']] = $state;
+			}
+		}
+		
+		DB::beginTransaction();
+		foreach($updates as $id => $state) {
+			DB::table('cars')->where('id', '=', $id)->update(array('state' => $state));
+		}
+		DB::commit();
 	}
 }
